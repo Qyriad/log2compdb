@@ -83,8 +83,7 @@ def main():
     parser.add_argument("-i", "--in", dest="logfile", type=argparse.FileType("r"), default="-",
         help="The build log file to parse.",
     )
-    parser.add_argument("-o", "--out", dest="outfile", type=argparse.FileType("w"), required=True,
-        default="compile_commands.json",
+    parser.add_argument("-o", "--out", dest="outfile", type=argparse.FileType("w"), default="compile_commands.json",
         help="The compile_commands.json file to write",
     )
     # TODO: support multiple compilers
