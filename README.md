@@ -16,10 +16,11 @@ doesn't work correctly. Theoretically any build log that contains full compiler 
 ## Example
 
 Let's take the [firmware repository](https://github.com/blackmagic-debug/blackmagic) for the Black Magic Probe
-project for an example. You can build the project normally, redirecting the build log to a file like so:
+project for an example. Many build systems don't output the compiler invocations by default, requiring a variable
+like `BUILD_VERBOSE=1` or `V=1`. In Blackmagic's case, it looks like this:
 
 ```bash
-$ make > build.log
+$ make V=1 > build.log
 ```
 
 It can be important that you don't pass a `-j` argument (other than `-j1`), as `log2compdb` uses directory change
@@ -29,7 +30,7 @@ Non-parallel builds can take a while, so you might want to include the build out
 something like:
 
 ```bash
-$ make | tee /dev/stdin > build.log
+$ make V=1 | tee /dev/stdin > build.log
 ```
 
 After that, you can run `log2compdb`, telling it the path to the build log, and the compiler used in the build.
@@ -43,7 +44,7 @@ $ log2compdb -i build.log -o compile_commands.json -c /opt/homebrew/bin/arm-none
 Alternatively, you can also tell `log2comp2db` to read from standard in, and skip the extra file:
 
 ```bash
-$ make | tee /dev/stdin | log2compdb -o compile_commands.json -c /opt/homebrew/bin/arm-none-eabi/gcc
+$ make V=1 | tee /dev/stdin | log2compdb -o compile_commands.json -c /opt/homebrew/bin/arm-none-eabi/gcc
 ```
 
 ## Installation
