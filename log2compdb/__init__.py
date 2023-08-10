@@ -29,6 +29,9 @@ class CompileCommand:
         if cc_cmd.name not in cmd_args[0]:
             return None
 
+        cmd_args = cmd_args[:]
+        cmd_args[0] = str(cc_cmd)
+
         if directory is None:
             directory = Path.cwd()
         else:
