@@ -42,18 +42,29 @@ class CompileCommand:
         else:
             directory = Path(directory)
 
+        input_path = None
+
         # Heuristic: look for a `-o <name>` and then look for a file matching that pattern.
         if output_index := cmd_args.index("-o"):
 
             output_path = directory / Path(cmd_args[output_index + 1])
-            input_file_index = next(
-                index for index, item in enumerate(cmd_args) if Path(item).stem == output_path.stem
-            )
-            if not input_file_index:
+
+            # Prefer input files that match the expected pattern, but fall back to whatever has that stem.
+            stem_matches = [item for item in cmd_args if Path(item).stem == output_path.stem]
+            for item in stem_matches:
+                if input_file_match := INFILE_PATTERN.search(item):
+                    input_path = input_file_match.group("path")
+                    break
+
+                # If none of the files with a matching stem matched the regex, then we'll just guess
+                # and grab the first file with a matching stem.
+                input_path = next(iter(item), None)
+
+            if not input_path:
                 print(f"No argument in cmdline matches stem of {output_path}. Skipping.")
                 return None
 
-            input_path = directory / cmd_args[input_file_index]
+            input_path = directory / Path(input_path)
         else:
             # If that fails, though, then let's fall back to a regex.
             match = None
