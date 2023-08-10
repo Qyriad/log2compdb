@@ -1,12 +1,14 @@
 import argparse
-import json
-import os
-import shlex
-import re
-from typing import Optional
-from pathlib import Path
+from collections.abc import MutableSequence
 import dataclasses
 from dataclasses import dataclass
+import io
+import json
+import os
+from pathlib import Path
+import shlex
+from typing import Optional, Sequence
+import re
 
 __version__ = "0.2.3"
 
@@ -106,26 +108,13 @@ class Compiler:
         return cls(name=name, path=path)
 
 
-def main():
-    parser = argparse.ArgumentParser("log2compdb")
-    parser.add_argument("-i", "--in", dest="logfile", type=argparse.FileType("r"), default="-",
-        help="The build log file to parse.",
-    )
-    parser.add_argument("-o", "--out", dest="outfile", type=argparse.FileType("w"), default="compile_commands.json",
-        help="The compile_commands.json file to write",
-    )
-    parser.add_argument("-c", "--compiler", dest="compilers", action="append",
-        help="The compiler used in this build log. An absolute path is best but isn't required. "
-        "Can be specified multiple times if your build log uses multiple compilers",
-    )
-    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
-
-    args = parser.parse_args()
-    logfile = args.logfile
-    compilers = [Compiler.from_argspec(compiler) for compiler in args.compilers]
-
-    dirstack = [os.getcwd()]
+def get_entries(logfile: io.TextIOBase, compilers: Sequence[Compiler]) -> list[CompileCommand]:
+    """
+    logfile: a file-like object for the build log, containing compiler invocations
+    compilers: a list of `Compiler` objects representing the compilers to look for in the build log.
+    """
     entries = []
+    dirstack = [os.getcwd()]
 
     for line in logfile:
 
@@ -161,6 +150,28 @@ def main():
             except ValueError:
                 # As usual, ignore lines we don't understand.
                 pass
+
+    return entries
+
+
+def main():
+    parser = argparse.ArgumentParser("log2compdb")
+    parser.add_argument("-i", "--in", dest="logfile", type=argparse.FileType("r"), default="-",
+        help="The build log file to parse.",
+    )
+    parser.add_argument("-o", "--out", dest="outfile", type=argparse.FileType("w"), default="compile_commands.json",
+        help="The compile_commands.json file to write",
+    )
+    parser.add_argument("-c", "--compiler", dest="compilers", action="append",
+        help="The compiler used in this build log. An absolute path is best but isn't required. "
+        "Can be specified multiple times if your build log uses multiple compilers",
+    )
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
+
+    args = parser.parse_args()
+    compilers = [Compiler.from_argspec(compiler) for compiler in args.compilers]
+
+    entries = get_entries(args.logfile, compilers)
 
     if not entries:
         print("Didn't detect any compiler invocations! Refusing to overwrite with empty JSON.")
