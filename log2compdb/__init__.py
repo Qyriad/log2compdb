@@ -115,10 +115,8 @@ def get_entries(logfile: io.TextIOBase, compilers: Sequence[Compiler] | Compiler
     compilers: a list of `Compiler` objects representing the compilers to look for in the build log.
     """
 
-    try:
+    if isinstance(compilers, Compiler):
         # If `compilers` was specified as a single, non-sequence object, squish that into a single-element list.
-        len(compilers) # type: ignore
-    except TypeError:
         compilers = typing.cast(list[Compiler], [compilers])
 
     entries = []
