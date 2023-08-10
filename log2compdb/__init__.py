@@ -9,6 +9,7 @@ import dataclasses
 from dataclasses import dataclass
 
 DIRCHANGE_PATTERN = re.compile(r"(?P<action>\w+) directory '(?P<path>.+)'")
+INFILE_PATTERN = re.compile(r"(?P<path>.+\.(c|cpp|cxx|cc|h|hpp|hxx))", re.IGNORECASE)
 
 
 @dataclass
@@ -39,21 +40,33 @@ class CompileCommand:
 
         # Heuristic: look for a `-o <name>` and then look for a file matching that pattern.
         output_index = cmd_args.index("-o")
-        if not output_index:
-            # If we can't get any output-setting argument at all, though, then we can't set `file`,
-            # so all we can do is skip this line.
-            return None
+        if output_index:
 
-        output_path = directory / Path(cmd_args[output_index + 1])
-        input_file_index = list_index_with_stem(cmd_args, output_path.stem)
-        if not input_file_index:
-            print(f"No argument in cmdline matches stem of {output_path}. Skipping.")
-            return None
+            output_path = directory / Path(cmd_args[output_index + 1])
+            input_file_index = list_index_with_stem(cmd_args, output_path.stem)
+            if not input_file_index:
+                print(f"No argument in cmdline matches stem of {output_path}. Skipping.")
+                return None
 
-        input_file = directory / cmd_args[input_file_index]
+            input_path = directory / cmd_args[input_file_index]
+        else:
+            # If that fails, though, then let's fall back to a regex.
+            match = None
+            for item in cmd_args:
+                match = INFILE_PATTERN.search(item)
+                if match:
+                    break
+
+            # If we couldn't find a single file with an expected extension though, bail.
+            if not match:
+                return None
+
+            input_path = Path(match.groupdict()["path"])
+            output_path = None
+
 
         return cls(
-            file=str(input_file),
+            file=str(input_path),
             arguments=cmd_args,
             directory=str(directory),
             output=str(output_path),
