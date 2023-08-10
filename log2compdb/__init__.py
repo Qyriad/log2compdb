@@ -87,7 +87,7 @@ def main():
     )
     # TODO: support multiple compilers
     parser.add_argument("-c", "--compiler", dest="compiler",
-        help="The compiler used in this build log. An absoute path is best but isn't required.",
+        help="The compiler used in this build log. An absolute path is best but isn't required.",
     )
 
     args = parser.parse_args()
