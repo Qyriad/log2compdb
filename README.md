@@ -49,8 +49,9 @@ $ make V=1 | tee /dev/stdin | log2compdb -o compile_commands.json -c /opt/homebr
 
 ## Installation
 
-`log2compdb` can be installed with Python packaging tools, such as pip:
+`log2compdb` is packaged on [PyPI](https://pypi.org/project/log2compdb/), and can be installed with Python
+packaging tools, such as pip:
 
 ```bash
-$ pip install git+https://github.com/Qyriad/log2compdb
+$ pip install log2compdb
 ```
