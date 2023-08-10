@@ -82,6 +82,7 @@ def main():
         help="The build log file to parse.",
     )
     parser.add_argument("-o", "--out", dest="outfile", type=argparse.FileType("w"), required=True,
+        default="compile_commands.json",
         help="The compile_commands.json file to write",
     )
     parser.add_argument("-c", "--compiler", dest="compiler",
