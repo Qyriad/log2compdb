@@ -67,12 +67,19 @@ def list_index_with_stem(l: list, stem: str) -> Optional[int]:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("logfile", type=argparse.FileType("r"))
-    parser.add_argument("cc_command")
+    parser.add_argument("-i", "--in", dest="logfile", type=argparse.FileType("r"), default="-",
+        help="The build log file to parse.",
+    )
+    parser.add_argument("-o", "--out", dest="outfile", type=argparse.FileType("w"), required=True,
+        help="The compile_commands.json file to write",
+    )
+    parser.add_argument("-c", "--compiler", dest="compiler",
+        help="The compiler used in this build log. An absoute path is best but isn't requird.",
+    )
 
     args = parser.parse_args()
     logfile = args.logfile
-    cc_cmd = args.cc_command
+    cc_cmd = args.compiler
     cc_path = Path(cc_cmd)
     if cc_path.is_absolute():
         cc_cmd = cc_path.name
