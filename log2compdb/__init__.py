@@ -133,8 +133,7 @@ def main():
 
     json_entries = list(map(dataclasses.asdict, entries))
 
-    with open("compile_commands.json", "w") as outfile:
-        json.dump(json_entries, outfile, indent=4)
+    json.dump(json_entries, args.outfile, indent=4)
 
 if __name__ == "__main__":
     main()
