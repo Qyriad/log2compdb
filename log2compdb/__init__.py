@@ -13,9 +13,9 @@ DIRCHANGE_PATTERN = re.compile(r"(?P<action>\w+) directory '(?P<path>.+)'")
 
 @dataclass
 class CompileCommand:
-    file: str | Path
-    output: str | Path
-    directory: str | Path
+    file: str
+    output: str
+    directory: str
     arguments: list
 
     @classmethod
