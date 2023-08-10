@@ -1,5 +1,5 @@
 import argparse
-from collections.abc import MutableSequence
+from collections.abc import Sequence
 import dataclasses
 from dataclasses import dataclass
 import io
@@ -8,7 +8,7 @@ import os
 from pathlib import Path
 import shlex
 import typing
-from typing import Optional, Sequence
+from typing import Optional
 import re
 
 __version__ = "0.2.4"
