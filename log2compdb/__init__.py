@@ -8,6 +8,8 @@ from pathlib import Path
 import dataclasses
 from dataclasses import dataclass
 
+__version__ = "0.2.0"
+
 DIRCHANGE_PATTERN = re.compile(r"(?P<action>\w+) directory '(?P<path>.+)'")
 INFILE_PATTERN = re.compile(r"(?P<path>.+\.(c|cpp|cxx|cc|h|hpp|hxx))", re.IGNORECASE)
 
