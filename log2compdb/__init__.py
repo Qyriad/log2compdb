@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import shlex
+import typing
 from typing import Optional, Sequence
 import re
 
@@ -108,11 +109,18 @@ class Compiler:
         return cls(name=name, path=path)
 
 
-def get_entries(logfile: io.TextIOBase, compilers: Sequence[Compiler]) -> list[CompileCommand]:
+def get_entries(logfile: io.TextIOBase, compilers: Sequence[Compiler] | Compiler) -> list[CompileCommand]:
     """
     logfile: a file-like object for the build log, containing compiler invocations
     compilers: a list of `Compiler` objects representing the compilers to look for in the build log.
     """
+
+    try:
+        # If `compilers` was specified as a single, non-sequence object, squish that into a single-element list.
+        len(compilers) # type: ignore
+    except TypeError:
+        compilers = typing.cast(list[Compiler], [compilers])
+
     entries = []
     dirstack = [os.getcwd()]
 

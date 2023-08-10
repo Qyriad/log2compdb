@@ -1,0 +1,531 @@
+if [ ! -f libopencm3/Makefile ]; then \
+	echo "Initialising git submodules..." ;\
+	git submodule init ;\
+	git submodule update ;\
+fi
+make -j1 -C libopencm3 lib/stm32/f1 lib/stm32/f4 lib/lm4f
+make[1]: Entering directory '/home/qyriad/code/1b2/blackmagic/libopencm3'
+  GENHDR  stm32/f0
+./scripts/irq2nvic_h ./include/libopencm3/stm32/f0/irq.json;
+  GENHDR  stm32/f1
+./scripts/irq2nvic_h ./include/libopencm3/stm32/f1/irq.json;
+  GENHDR  stm32/f2
+./scripts/irq2nvic_h ./include/libopencm3/stm32/f2/irq.json;
+  GENHDR  stm32/f3
+./scripts/irq2nvic_h ./include/libopencm3/stm32/f3/irq.json;
+  GENHDR  stm32/f4
+./scripts/irq2nvic_h ./include/libopencm3/stm32/f4/irq.json;
+  GENHDR  stm32/f7
+./scripts/irq2nvic_h ./include/libopencm3/stm32/f7/irq.json;
+  GENHDR  stm32/l0
+./scripts/irq2nvic_h ./include/libopencm3/stm32/l0/irq.json;
+  GENHDR  stm32/l1
+./scripts/irq2nvic_h ./include/libopencm3/stm32/l1/irq.json;
+  GENHDR  stm32/l4
+./scripts/irq2nvic_h ./include/libopencm3/stm32/l4/irq.json;
+  GENHDR  stm32/g0
+./scripts/irq2nvic_h ./include/libopencm3/stm32/g0/irq.json;
+  GENHDR  stm32/g4
+./scripts/irq2nvic_h ./include/libopencm3/stm32/g4/irq.json;
+  GENHDR  stm32/h7
+./scripts/irq2nvic_h ./include/libopencm3/stm32/h7/irq.json;
+  GENHDR  gd32/f1x0
+./scripts/irq2nvic_h ./include/libopencm3/gd32/f1x0/irq.json;
+  GENHDR  lpc13xx
+./scripts/irq2nvic_h ./include/libopencm3/lpc13xx/irq.json;
+  GENHDR  lpc17xx
+./scripts/irq2nvic_h ./include/libopencm3/lpc17xx/irq.json;
+  GENHDR  lpc43xx/m4
+./scripts/irq2nvic_h ./include/libopencm3/lpc43xx/m4/irq.json;
+  GENHDR  lpc43xx/m0
+./scripts/irq2nvic_h ./include/libopencm3/lpc43xx/m0/irq.json;
+  GENHDR  lm3s
+./scripts/irq2nvic_h ./include/libopencm3/lm3s/irq.json;
+  GENHDR  msp432/e4
+./scripts/irq2nvic_h ./include/libopencm3/msp432/e4/irq.json;
+  GENHDR  efm32/tg
+./scripts/irq2nvic_h ./include/libopencm3/efm32/tg/irq.json;
+  GENHDR  efm32/g
+./scripts/irq2nvic_h ./include/libopencm3/efm32/g/irq.json;
+  GENHDR  efm32/lg
+./scripts/irq2nvic_h ./include/libopencm3/efm32/lg/irq.json;
+  GENHDR  efm32/gg
+./scripts/irq2nvic_h ./include/libopencm3/efm32/gg/irq.json;
+  GENHDR  efm32/hg
+./scripts/irq2nvic_h ./include/libopencm3/efm32/hg/irq.json;
+  GENHDR  efm32/wg
+./scripts/irq2nvic_h ./include/libopencm3/efm32/wg/irq.json;
+  GENHDR  efm32/ezr32wg
+./scripts/irq2nvic_h ./include/libopencm3/efm32/ezr32wg/irq.json;
+  GENHDR  nrf/51
+./scripts/irq2nvic_h ./include/libopencm3/nrf/51/irq.json;
+  GENHDR  nrf/52
+./scripts/irq2nvic_h ./include/libopencm3/nrf/52/irq.json;
+  GENHDR  sam/3a
+./scripts/irq2nvic_h ./include/libopencm3/sam/3a/irq.json;
+  GENHDR  sam/3n
+./scripts/irq2nvic_h ./include/libopencm3/sam/3n/irq.json;
+  GENHDR  sam/3s
+./scripts/irq2nvic_h ./include/libopencm3/sam/3s/irq.json;
+  GENHDR  sam/3u
+./scripts/irq2nvic_h ./include/libopencm3/sam/3u/irq.json;
+  GENHDR  sam/3x
+./scripts/irq2nvic_h ./include/libopencm3/sam/3x/irq.json;
+  GENHDR  sam/4l
+./scripts/irq2nvic_h ./include/libopencm3/sam/4l/irq.json;
+  GENHDR  sam/d
+./scripts/irq2nvic_h ./include/libopencm3/sam/d/irq.json;
+  GENHDR  vf6xx
+./scripts/irq2nvic_h ./include/libopencm3/vf6xx/irq.json;
+  GENHDR  swm050
+./scripts/irq2nvic_h ./include/libopencm3/swm050/irq.json;
+  GENHDR  pac55xx
+./scripts/irq2nvic_h ./include/libopencm3/pac55xx/irq.json;
+rm -f .stamp_failure_lib_stm32_f1
+  BUILD   lib/stm32/f1
+make --directory=lib/stm32/f1 PREFIX="arm-none-eabi-" || \
+	echo "Failure building: lib/stm32/f1: code: $?" > .stamp_failure_lib_stm32_f1
+make[2]: Entering directory '/home/qyriad/code/1b2/blackmagic/libopencm3/lib/stm32/f1'
+  CC      adc.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o adc.o -c adc.c
+  CC      adc_common_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o adc_common_v1.o -c ../common/adc_common_v1.c
+  CC      can.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o can.o -c ../can.c
+  CC      crc_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o crc_common_all.o -c ../common/crc_common_all.c
+  CC      dac_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o dac_common_all.o -c ../common/dac_common_all.c
+  CC      dac_common_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o dac_common_v1.o -c ../common/dac_common_v1.c
+  CC      desig_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o desig_common_all.o -c ../common/desig_common_all.c
+  CC      desig_common_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o desig_common_v1.o -c ../common/desig_common_v1.c
+  CC      dma_common_l1f013.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o dma_common_l1f013.o -c ../common/dma_common_l1f013.c
+  CC      exti_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o exti_common_all.o -c ../common/exti_common_all.c
+  CC      flash.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o flash.o -c flash.c
+  CC      flash_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o flash_common_all.o -c ../common/flash_common_all.c
+  CC      flash_common_f.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o flash_common_f.o -c ../common/flash_common_f.c
+  CC      flash_common_f01.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o flash_common_f01.o -c ../common/flash_common_f01.c
+  CC      gpio.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o gpio.o -c gpio.c
+  CC      gpio_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o gpio_common_all.o -c ../common/gpio_common_all.c
+  CC      i2c_common_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o i2c_common_v1.o -c ../common/i2c_common_v1.c
+  CC      iwdg_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o iwdg_common_all.o -c ../common/iwdg_common_all.c
+  CC      pwr_common_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o pwr_common_v1.o -c ../common/pwr_common_v1.c
+  CC      rcc.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o rcc.o -c rcc.c
+  CC      rcc_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o rcc_common_all.o -c ../common/rcc_common_all.c
+  CC      rtc.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o rtc.o -c rtc.c
+  CC      spi_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o spi_common_all.o -c ../common/spi_common_all.c
+  CC      spi_common_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o spi_common_v1.o -c ../common/spi_common_v1.c
+  CC      timer.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o timer.o -c timer.c
+  CC      timer_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o timer_common_all.o -c ../common/timer_common_all.c
+  CC      usart_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o usart_common_all.o -c ../common/usart_common_all.c
+  CC      usart_common_f124.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o usart_common_f124.o -c ../common/usart_common_f124.c
+  CC      mac.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o mac.o -c ../../ethernet/mac.c
+  CC      mac_stm32fxx7.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o mac_stm32fxx7.o -c ../../ethernet/mac_stm32fxx7.c
+  CC      phy.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o phy.o -c ../../ethernet/phy.c
+  CC      phy_ksz80x1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o phy_ksz80x1.o -c ../../ethernet/phy_ksz80x1.c
+  CC      usb.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o usb.o -c ../../usb/usb.c
+  CC      usb_control.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o usb_control.o -c ../../usb/usb_control.c
+  CC      usb_standard.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o usb_standard.o -c ../../usb/usb_standard.c
+  CC      usb_msc.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o usb_msc.o -c ../../usb/usb_msc.c
+  CC      usb_hid.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o usb_hid.o -c ../../usb/usb_hid.c
+  CC      usb_audio.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o usb_audio.o -c ../../usb/usb_audio.c
+  CC      usb_cdc.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o usb_cdc.o -c ../../usb/usb_cdc.c
+  CC      usb_midi.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o usb_midi.o -c ../../usb/usb_midi.c
+  CC      usb_dwc_common.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o usb_dwc_common.o -c ../../usb/usb_dwc_common.c
+  CC      usb_f107.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o usb_f107.o -c ../../usb/usb_f107.c
+  CC      st_usbfs_core.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o st_usbfs_core.o -c ../common/st_usbfs_core.c
+  CC      st_usbfs_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o st_usbfs_v1.o -c ../st_usbfs_v1.c
+  CC      vector.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o vector.o -c ../../cm3/vector.c
+  CC      systick.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o systick.o -c ../../cm3/systick.c
+  CC      scb.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o scb.o -c ../../cm3/scb.c
+  CC      nvic.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o nvic.o -c ../../cm3/nvic.c
+  CC      assert.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o assert.o -c ../../cm3/assert.c
+  CC      sync.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o sync.o -c ../../cm3/sync.c
+  CC      dwt.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m3  -mthumb -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F1 -ggdb3 -std=c99  -o dwt.o -c ../../cm3/dwt.c
+  AR      libopencm3_stm32f1.a
+arm-none-eabi-ar rcs "../../libopencm3_stm32f1.a" adc.o adc_common_v1.o can.o crc_common_all.o dac_common_all.o dac_common_v1.o desig_common_all.o desig_common_v1.o dma_common_l1f013.o exti_common_all.o flash.o flash_common_all.o flash_common_f.o flash_common_f01.o gpio.o gpio_common_all.o i2c_common_v1.o iwdg_common_all.o pwr_common_v1.o rcc.o rcc_common_all.o rtc.o spi_common_all.o spi_common_v1.o timer.o timer_common_all.o usart_common_all.o usart_common_f124.o mac.o mac_stm32fxx7.o phy.o phy_ksz80x1.o usb.o usb_control.o usb_standard.o usb_msc.o usb_hid.o usb_audio.o usb_cdc.o usb_midi.o usb_dwc_common.o usb_f107.o st_usbfs_core.o st_usbfs_v1.o vector.o systick.o scb.o nvic.o assert.o sync.o dwt.o
+make[2]: Leaving directory '/home/qyriad/code/1b2/blackmagic/libopencm3/lib/stm32/f1'
+rm -f .stamp_failure_lib_stm32_f4
+  BUILD   lib/stm32/f4
+make --directory=lib/stm32/f4 PREFIX="arm-none-eabi-" || \
+	echo "Failure building: lib/stm32/f4: code: $?" > .stamp_failure_lib_stm32_f4
+make[2]: Entering directory '/home/qyriad/code/1b2/blackmagic/libopencm3/lib/stm32/f4'
+  CC      adc_common_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o adc_common_v1.o -c ../common/adc_common_v1.c
+  CC      adc_common_v1_multi.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o adc_common_v1_multi.o -c ../common/adc_common_v1_multi.c
+  CC      adc_common_f47.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o adc_common_f47.o -c ../common/adc_common_f47.c
+  CC      can.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o can.o -c ../can.c
+  CC      crc_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o crc_common_all.o -c ../common/crc_common_all.c
+  CC      crypto_common_f24.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o crypto_common_f24.o -c ../common/crypto_common_f24.c
+  CC      crypto.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o crypto.o -c crypto.c
+  CC      dac_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o dac_common_all.o -c ../common/dac_common_all.c
+  CC      dac_common_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o dac_common_v1.o -c ../common/dac_common_v1.c
+  CC      dcmi_common_f47.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o dcmi_common_f47.o -c ../common/dcmi_common_f47.c
+  CC      desig_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o desig_common_all.o -c ../common/desig_common_all.c
+  CC      desig_common_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o desig_common_v1.o -c ../common/desig_common_v1.c
+  CC      dma_common_f24.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o dma_common_f24.o -c ../common/dma_common_f24.c
+  CC      dma2d_common_f47.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o dma2d_common_f47.o -c ../common/dma2d_common_f47.c
+  CC      dsi_common_f47.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o dsi_common_f47.o -c ../common/dsi_common_f47.c
+  CC      exti_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o exti_common_all.o -c ../common/exti_common_all.c
+  CC      flash.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o flash.o -c flash.c
+  CC      flash_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o flash_common_all.o -c ../common/flash_common_all.c
+  CC      flash_common_f.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o flash_common_f.o -c ../common/flash_common_f.c
+  CC      flash_common_f24.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o flash_common_f24.o -c ../common/flash_common_f24.c
+  CC      flash_common_idcache.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o flash_common_idcache.o -c ../common/flash_common_idcache.c
+  CC      fmc_common_f47.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o fmc_common_f47.o -c ../common/fmc_common_f47.c
+  CC      gpio_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o gpio_common_all.o -c ../common/gpio_common_all.c
+  CC      gpio_common_f0234.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o gpio_common_f0234.o -c ../common/gpio_common_f0234.c
+  CC      hash_common_f24.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o hash_common_f24.o -c ../common/hash_common_f24.c
+  CC      i2c_common_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o i2c_common_v1.o -c ../common/i2c_common_v1.c
+  CC      iwdg_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o iwdg_common_all.o -c ../common/iwdg_common_all.c
+  CC      lptimer_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o lptimer_common_all.o -c ../common/lptimer_common_all.c
+  CC      ltdc_common_f47.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o ltdc_common_f47.o -c ../common/ltdc_common_f47.c
+  CC      pwr_common_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o pwr_common_v1.o -c ../common/pwr_common_v1.c
+  CC      pwr.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o pwr.o -c pwr.c
+  CC      rcc_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o rcc_common_all.o -c ../common/rcc_common_all.c
+  CC      rcc.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o rcc.o -c rcc.c
+  CC      rng_common_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o rng_common_v1.o -c ../common/rng_common_v1.c
+  CC      rtc_common_l1f024.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o rtc_common_l1f024.o -c ../common/rtc_common_l1f024.c
+  CC      rtc.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o rtc.o -c rtc.c
+  CC      spi_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o spi_common_all.o -c ../common/spi_common_all.c
+  CC      spi_common_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o spi_common_v1.o -c ../common/spi_common_v1.c
+  CC      spi_common_v1_frf.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o spi_common_v1_frf.o -c ../common/spi_common_v1_frf.c
+  CC      timer_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o timer_common_all.o -c ../common/timer_common_all.c
+  CC      timer_common_f0234.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o timer_common_f0234.o -c ../common/timer_common_f0234.c
+  CC      timer_common_f24.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o timer_common_f24.o -c ../common/timer_common_f24.c
+  CC      usart_common_all.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o usart_common_all.o -c ../common/usart_common_all.c
+  CC      usart_common_f124.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o usart_common_f124.o -c ../common/usart_common_f124.c
+  CC      quadspi_common_v1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o quadspi_common_v1.o -c ../common/quadspi_common_v1.c
+  CC      usb.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o usb.o -c ../../usb/usb.c
+  CC      usb_standard.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o usb_standard.o -c ../../usb/usb_standard.c
+  CC      usb_control.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o usb_control.o -c ../../usb/usb_control.c
+  CC      usb_msc.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o usb_msc.o -c ../../usb/usb_msc.c
+  CC      usb_hid.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o usb_hid.o -c ../../usb/usb_hid.c
+  CC      usb_audio.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o usb_audio.o -c ../../usb/usb_audio.c
+  CC      usb_cdc.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o usb_cdc.o -c ../../usb/usb_cdc.c
+  CC      usb_midi.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o usb_midi.o -c ../../usb/usb_midi.c
+  CC      usb_dwc_common.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o usb_dwc_common.o -c ../../usb/usb_dwc_common.c
+  CC      usb_f107.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o usb_f107.o -c ../../usb/usb_f107.c
+  CC      usb_f207.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o usb_f207.o -c ../../usb/usb_f207.c
+  CC      mac.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o mac.o -c ../../ethernet/mac.c
+  CC      phy.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o phy.o -c ../../ethernet/phy.c
+  CC      mac_stm32fxx7.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o mac_stm32fxx7.o -c ../../ethernet/mac_stm32fxx7.c
+  CC      phy_ksz80x1.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o phy_ksz80x1.o -c ../../ethernet/phy_ksz80x1.c
+  CC      vector.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o vector.o -c ../../cm3/vector.c
+  CC      systick.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o systick.o -c ../../cm3/systick.c
+  CC      scb.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o scb.o -c ../../cm3/scb.c
+  CC      nvic.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o nvic.o -c ../../cm3/nvic.c
+  CC      assert.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o assert.o -c ../../cm3/assert.c
+  CC      sync.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o sync.o -c ../../cm3/sync.c
+  CC      dwt.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DSTM32F4 -ggdb3 -std=c99  -o dwt.o -c ../../cm3/dwt.c
+  AR      libopencm3_stm32f4.a
+arm-none-eabi-ar rcs "../../libopencm3_stm32f4.a" adc_common_v1.o adc_common_v1_multi.o adc_common_f47.o can.o crc_common_all.o crypto_common_f24.o crypto.o dac_common_all.o dac_common_v1.o dcmi_common_f47.o desig_common_all.o desig_common_v1.o dma_common_f24.o dma2d_common_f47.o dsi_common_f47.o exti_common_all.o flash.o flash_common_all.o flash_common_f.o flash_common_f24.o flash_common_idcache.o fmc_common_f47.o gpio_common_all.o gpio_common_f0234.o hash_common_f24.o i2c_common_v1.o iwdg_common_all.o lptimer_common_all.o ltdc_common_f47.o pwr_common_v1.o pwr.o rcc_common_all.o rcc.o rng_common_v1.o rtc_common_l1f024.o rtc.o spi_common_all.o spi_common_v1.o spi_common_v1_frf.o timer_common_all.o timer_common_f0234.o timer_common_f24.o usart_common_all.o usart_common_f124.o quadspi_common_v1.o usb.o usb_standard.o usb_control.o usb_msc.o usb_hid.o usb_audio.o usb_cdc.o usb_midi.o usb_dwc_common.o usb_f107.o usb_f207.o mac.o phy.o mac_stm32fxx7.o phy_ksz80x1.o vector.o systick.o scb.o nvic.o assert.o sync.o dwt.o
+make[2]: Leaving directory '/home/qyriad/code/1b2/blackmagic/libopencm3/lib/stm32/f4'
+rm -f .stamp_failure_lib_lm4f
+  BUILD   lib/lm4f
+make --directory=lib/lm4f PREFIX="arm-none-eabi-" || \
+	echo "Failure building: lib/lm4f: code: $?" > .stamp_failure_lib_lm4f
+make[2]: Entering directory '/home/qyriad/code/1b2/blackmagic/libopencm3/lib/lm4f'
+  CC      assert.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o assert.o -c ../cm3/assert.c
+  CC      gpio.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o gpio.o -c gpio.c
+  CC      rcc.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o rcc.o -c rcc.c
+  CC      systemcontrol.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o systemcontrol.o -c systemcontrol.c
+  CC      uart.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o uart.o -c uart.c
+  CC      vector.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o vector.o -c ../cm3/vector.c
+  CC      usb.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o usb.o -c ../usb/usb.c
+  CC      usb_control.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o usb_control.o -c ../usb/usb_control.c
+  CC      usb_standard.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o usb_standard.o -c ../usb/usb_standard.c
+  CC      usb_msc.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o usb_msc.o -c ../usb/usb_msc.c
+  CC      usb_hid.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o usb_hid.o -c ../usb/usb_hid.c
+  CC      usb_audio.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o usb_audio.o -c ../usb/usb_audio.c
+  CC      usb_cdc.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o usb_cdc.o -c ../usb/usb_cdc.c
+  CC      usb_midi.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o usb_midi.o -c ../usb/usb_midi.c
+  CC      usb_lm4f.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o usb_lm4f.o -c ../usb/usb_lm4f.c
+  CC      systick.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o systick.o -c ../cm3/systick.c
+  CC      scb.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o scb.o -c ../cm3/scb.c
+  CC      nvic.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o nvic.o -c ../cm3/nvic.c
+  CC      sync.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o sync.o -c ../cm3/sync.c
+  CC      dwt.c
+arm-none-eabi-gcc -Os -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow -I../../include -fno-common -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wstrict-prototypes -ffunction-sections -fdata-sections -MD -DLM4F -ggdb3 -std=c99  -o dwt.o -c ../cm3/dwt.c
+  AR      libopencm3_lm4f.a
+arm-none-eabi-ar rcs "../libopencm3_lm4f.a" assert.o gpio.o rcc.o systemcontrol.o uart.o vector.o usb.o usb_control.o usb_standard.o usb_msc.o usb_hid.o usb_audio.o usb_cdc.o usb_midi.o usb_lm4f.o vector.o systick.o scb.o nvic.o assert.o sync.o dwt.o
+make[2]: Leaving directory '/home/qyriad/code/1b2/blackmagic/libopencm3/lib/lm4f'
+make[1]: Leaving directory '/home/qyriad/code/1b2/blackmagic/libopencm3'
+make -j1 -C src
+make[1]: Entering directory '/home/qyriad/code/1b2/blackmagic/src'
+if [ ! -f include/version.h ] || [ "$(cat include/version.h)" != "$(echo '#define FIRMWARE_VERSION "v1.9.1"\n')" ]; then \
+	echo " GEN include/version.h"; \
+	echo '#define FIRMWARE_VERSION "v1.9.1"' > include/version.h; \
+fi
+ GEN include/version.h
+  CC      target/adiv5.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/adiv5.c -o adiv5.o
+  CC      target/adiv5_jtagdp.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/adiv5_jtagdp.c -o adiv5_jtagdp.o
+  CC      target/adiv5_swdp.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/adiv5_swdp.c -o adiv5_swdp.o
+  CC      command.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c command.c -o command.o
+  CC      target/cortexa.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/cortexa.c -o cortexa.o
+  CC      target/cortexm.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/cortexm.c -o cortexm.o
+  CC      crc32.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c crc32.c -o crc32.o
+  CC      target/efm32.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/efm32.c -o efm32.o
+  CC      exception.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c exception.c -o exception.o
+  CC      platforms/stm32/gdb_if.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/stm32/gdb_if.c -o gdb_if.o
+  CC      gdb_main.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c gdb_main.c -o gdb_main.o
+  CC      gdb_hostio.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c gdb_hostio.c -o gdb_hostio.o
+  CC      gdb_packet.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c gdb_packet.c -o gdb_packet.o
+  CC      target/gdb_reg.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/gdb_reg.c -o gdb_reg.o
+  CC      hex_utils.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c hex_utils.c -o hex_utils.o
+  CC      target/jtag_devs.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/jtag_devs.c -o jtag_devs.o
+  CC      target/jtag_scan.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/jtag_scan.c -o jtag_scan.o
+  CC      target/lmi.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/lmi.c -o lmi.o
+  CC      target/lpc_common.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/lpc_common.c -o lpc_common.o
+  CC      target/lpc11xx.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/lpc11xx.c -o lpc11xx.o
+  CC      target/lpc17xx.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/lpc17xx.c -o lpc17xx.o
+  CC      target/lpc15xx.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/lpc15xx.c -o lpc15xx.o
+  CC      target/lpc43xx.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/lpc43xx.c -o lpc43xx.o
+  CC      target/lpc546xx.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/lpc546xx.c -o lpc546xx.o
+  CC      target/kinetis.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/kinetis.c -o kinetis.o
+  CC      main.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c main.c -o main.o
+  CC      morse.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c morse.c -o morse.o
+  CC      target/msp432.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/msp432.c -o msp432.o
+  CC      target/nrf51.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/nrf51.c -o nrf51.o
+  CC      target/nxpke04.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/nxpke04.c -o nxpke04.o
+  CC      platforms/native/platform.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/native/platform.c -o platform.o
+  CC      remote.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c remote.c -o remote.o
+  CC      target/rp.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/rp.c -o rp.o
+  CC      target/sam3x.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/sam3x.c -o sam3x.o
+  CC      target/sam4l.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/sam4l.c -o sam4l.o
+  CC      target/samd.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/samd.c -o samd.o
+  CC      target/samx5x.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/samx5x.c -o samx5x.o
+  CC      target/sfdp.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/sfdp.c -o sfdp.o
+  CC      target/stm32f1.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/stm32f1.c -o stm32f1.o
+  CC      target/ch32f1.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/ch32f1.c -o ch32f1.o
+  CC      target/stm32f4.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/stm32f4.c -o stm32f4.o
+  CC      target/stm32h7.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/stm32h7.c -o stm32h7.o
+  CC      target/stm32l0.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/stm32l0.c -o stm32l0.o
+  CC      target/stm32l4.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/stm32l4.c -o stm32l4.o
+  CC      target/stm32g0.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/stm32g0.c -o stm32g0.o
+  CC      target/renesas.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/renesas.c -o renesas.o
+  CC      target/target.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/target.c -o target.o
+  CC      target/target_flash.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/target_flash.c -o target_flash.o
+  CC      target/target_probe.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c target/target_probe.c -o target_probe.o
+  CC      platforms/stm32/traceswodecode.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/stm32/traceswodecode.c -o traceswodecode.o
+  CC      platforms/stm32/traceswo.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/stm32/traceswo.c -o traceswo.o
+  CC      platforms/stm32/serialno.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/stm32/serialno.c -o serialno.o
+  CC      timing.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c timing.c -o timing.o
+  CC      platforms/stm32/timing_stm32.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/stm32/timing_stm32.c -o timing_stm32.o
+  CC      platforms/common/jtagtap.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/common/jtagtap.c -o jtagtap.o
+  CC      platforms/common/swdptap.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/common/swdptap.c -o swdptap.o
+  CC      platforms/common/usb.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/common/usb.c -o usb.o
+  CC      platforms/common/usb_serial.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/common/usb_serial.c -o usb_serial.o
+  CC      platforms/common/usb_dfu_stub.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/common/usb_dfu_stub.c -o usb_dfu_stub.o
+  CC      platforms/common/aux_serial.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/common/aux_serial.c -o aux_serial.o
+  LD      blackmagic.elf
+arm-none-eabi-gcc -o blackmagic.elf adiv5.o adiv5_jtagdp.o adiv5_swdp.o command.o cortexa.o cortexm.o crc32.o efm32.o exception.o gdb_if.o gdb_main.o gdb_hostio.o gdb_packet.o gdb_reg.o hex_utils.o jtag_devs.o jtag_scan.o lmi.o lpc_common.o lpc11xx.o lpc17xx.o lpc15xx.o lpc43xx.o lpc546xx.o kinetis.o main.o morse.o msp432.o nrf51.o nxpke04.o platform.o remote.o rp.o sam3x.o sam4l.o samd.o samx5x.o sfdp.o stm32f1.o ch32f1.o stm32f4.o stm32h7.o stm32l0.o stm32l4.o stm32g0.o renesas.o target.o target_flash.o target_probe.o traceswodecode.o traceswo.o serialno.o timing.o timing_stm32.o jtagtap.o swdptap.o usb.o usb_serial.o usb_dfu_stub.o aux_serial.o  --specs=nano.specs -lopencm3_stm32f1 -Wl,-T,platforms/stm32/blackmagic.ld -nostartfiles -lc -Wl,-Map=mapfile -mthumb -mcpu=cortex-m3 -Wl,-gc-sections -L../libopencm3/lib -Wl,-Ttext=0x8002000 --specs=nosys.specs -Wl,--print-memory-usage -Os
+Memory region         Used Size  Region Size  %age Used
+             rom:      120236 B       128 KB     91.73%
+             ram:        3640 B        20 KB     17.77%
+  OBJCOPY blackmagic.bin
+arm-none-eabi-objcopy -O binary blackmagic.elf blackmagic.bin
+  CC      platforms/native/usbdfu.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/native/usbdfu.c -o usbdfu.o
+  CC      platforms/stm32/dfucore.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/stm32/dfucore.c -o dfucore.o
+  CC      platforms/stm32/dfu_f1.c
+arm-none-eabi-gcc -Wall -Wextra -Werror -Wreturn-type -Wno-char-subscripts -std=c11 -g3 -MD -I./target -I. -Iinclude -Iplatforms/native -Istm32/include -mcpu=cortex-m3 -mthumb -DSTM32F1 -DBLACKMAGIC -I../libopencm3/include -Iplatforms/stm32 -DDFU_SERIAL_LENGTH=9 -Os -DPC_HOSTED=0 -Iplatforms/common -c platforms/stm32/dfu_f1.c -o dfu_f1.o
+  LD      blackmagic_dfu.elf
+arm-none-eabi-gcc usbdfu.o dfucore.o dfu_f1.o serialno.o -o blackmagic_dfu.elf  --specs=nano.specs -lopencm3_stm32f1 -Wl,-T,platforms/stm32/blackmagic.ld -nostartfiles -lc -Wl,-Map=mapfile -mthumb -mcpu=cortex-m3 -Wl,-gc-sections -L../libopencm3/lib
+  OBJCOPY blackmagic_dfu.bin
+arm-none-eabi-objcopy -O binary blackmagic_dfu.elf blackmagic_dfu.bin
+  OBJCOPY blackmagic_dfu.hex
+arm-none-eabi-objcopy -O ihex blackmagic_dfu.elf blackmagic_dfu.hex
+make[1]: Leaving directory '/home/qyriad/code/1b2/blackmagic/src'
