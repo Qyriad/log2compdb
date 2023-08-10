@@ -11,7 +11,6 @@ from dataclasses import dataclass
 DIRCHANGE_PATTERN = re.compile(r"(?P<action>\w+) directory '(?P<path>.+)'")
 INFILE_PATTERN = re.compile(r"(?P<path>.+\.(c|cpp|cxx|cc|h|hpp|hxx))", re.IGNORECASE)
 
-
 @dataclass
 class CompileCommand:
     file: str
@@ -78,8 +77,6 @@ def list_index_with_stem(l: list, stem: str) -> Optional[int]:
         path = Path(item)
         if path.stem == stem:
             return index
-        #if item.startswith(stem):
-        #    return index
 
 def main():
     parser = argparse.ArgumentParser()
