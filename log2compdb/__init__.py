@@ -77,6 +77,23 @@ class CompileCommand:
             output=str(output_path),
         )
 
+@dataclass
+class Compiler:
+    name: str
+    path: Path
+
+    @classmethod
+    def from_argspec(cls, compiler_arg) -> "Compiler":
+        """ `compiler_arg` is a value of --compiler verbatim. """
+
+        path = Path(compiler_arg)
+        if path.is_absolute():
+            name = path.name
+        else:
+            name = compiler_arg
+
+        return cls(name=name, path=path)
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -86,17 +103,13 @@ def main():
     parser.add_argument("-o", "--out", dest="outfile", type=argparse.FileType("w"), default="compile_commands.json",
         help="The compile_commands.json file to write",
     )
-    # TODO: support multiple compilers
-    parser.add_argument("-c", "--compiler", dest="compiler",
+    parser.add_argument("-c", "--compiler", dest="compilers", action="append",
         help="The compiler used in this build log. An absolute path is best but isn't required.",
     )
 
     args = parser.parse_args()
     logfile = args.logfile
-    cc_cmd = args.compiler
-    cc_path = Path(cc_cmd)
-    if cc_path.is_absolute():
-        cc_cmd = cc_path.name
+    compilers = [Compiler.from_argspec(compiler) for compiler in args.compilers]
 
     dirstack = [os.getcwd()]
     entries = []
@@ -124,9 +137,10 @@ def main():
         if not cmd_args:
             continue
 
-        if cc_cmd in cmd_args[0]:
-            entry = CompileCommand.from_cmdline(cc_path, cmd_args, dirstack[-1])
-            entries.append(entry)
+        for compiler in compilers:
+            if compiler.name in cmd_args[0]:
+                entry = CompileCommand.from_cmdline(compiler.path, cmd_args, dirstack[-1])
+                entries.append(entry)
 
     if not entries:
         print("Didn't detect any compiler invocations! Refusing to overwrite with empty JSON.")
