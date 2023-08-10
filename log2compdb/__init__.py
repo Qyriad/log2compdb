@@ -64,7 +64,7 @@ class CompileCommand:
             if not match:
                 return None
 
-            input_path = Path(match.groupdict()["path"])
+            input_path = Path(match.group("path"))
             output_path = None
 
 
@@ -85,8 +85,9 @@ def main():
         default="compile_commands.json",
         help="The compile_commands.json file to write",
     )
+    # TODO: support multiple compilers
     parser.add_argument("-c", "--compiler", dest="compiler",
-        help="The compiler used in this build log. An absoute path is best but isn't requird.",
+        help="The compiler used in this build log. An absoute path is best but isn't required.",
     )
 
     args = parser.parse_args()
@@ -106,9 +107,8 @@ def main():
             continue
 
         if dirchange_match := DIRCHANGE_PATTERN.search(line):
-            groups = dirchange_match.groupdict()
-            action = groups["action"]
-            path = groups["path"]
+            action = dirchange_match.group("action")
+            path = dirchange_match.group("path")
             if action == "Leaving":
                 dirstack.pop()
             elif action == "Entering":
