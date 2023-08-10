@@ -44,7 +44,9 @@ class CompileCommand:
         if output_index := cmd_args.index("-o"):
 
             output_path = directory / Path(cmd_args[output_index + 1])
-            input_file_index = list_index_with_stem(cmd_args, output_path.stem)
+            input_file_index = next(
+                index for index, item in enumerate(cmd_args) if Path(item).stem == output_path.stem
+            )
             if not input_file_index:
                 print(f"No argument in cmdline matches stem of {output_path}. Skipping.")
                 return None
@@ -73,12 +75,6 @@ class CompileCommand:
             output=str(output_path),
         )
 
-
-def list_index_with_stem(l: list, stem: str) -> Optional[int]:
-    for index, item in enumerate(l):
-        path = Path(item)
-        if path.stem == stem:
-            return index
 
 def main():
     parser = argparse.ArgumentParser()
