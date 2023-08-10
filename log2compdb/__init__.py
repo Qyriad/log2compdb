@@ -151,9 +151,16 @@ def main():
             continue
 
         for compiler in compilers:
-            if compiler.name in cmd_args[0]:
-                entry = CompileCommand.from_cmdline(compiler.path, cmd_args, dirstack[-1])
+            # Look for a compiler invocation anywhere in the command args,
+            # but consider that the start of the arguments for further parsing.
+            # A lot of build systems like to use a wrapper command in their compiler invocation.
+            try:
+                compiler_invocation_start = cmd_args.index(compiler.name)
+                entry = CompileCommand.from_cmdline(compiler.path, cmd_args[compiler_invocation_start:], dirstack[-1])
                 entries.append(entry)
+            except ValueError:
+                # As usual, ignore lines we don't understand.
+                pass
 
     if not entries:
         print("Didn't detect any compiler invocations! Refusing to overwrite with empty JSON.")
