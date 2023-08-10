@@ -104,7 +104,8 @@ def main():
         help="The compile_commands.json file to write",
     )
     parser.add_argument("-c", "--compiler", dest="compilers", action="append",
-        help="The compiler used in this build log. An absolute path is best but isn't required.",
+        help="The compiler used in this build log. An absolute path is best but isn't required. "
+        "Can be specified multiple times if your build log uses multiple compilers",
     )
 
     args = parser.parse_args()

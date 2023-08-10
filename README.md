@@ -10,8 +10,10 @@ doesn't work correctly. Theoretically any build log that contains full compiler 
 `log2compdb` takes three arguments:
 
 - The build log file, with `-i`/`--in`
-- The path to the desired output file (defaults to `compile_commands.json` in the current directory)
-- The compiler used in that build log — an absolute path works best, but isn't required
+- The path to the desired output file, with `-o`/`--out` (defaults to `compile_commands.json` in the current directory)
+- The compiler used in that build log, with `-c`/`--compiler` — an absolute path works best, but isn't required
+    - If your build log has multiple compilers (for example if your build includes host and cross compilation
+        objects), then `-c` can be specified multiple times.
 
 ## Example
 
