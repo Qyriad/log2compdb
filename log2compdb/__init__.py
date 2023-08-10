@@ -96,7 +96,7 @@ class Compiler:
 
 
 def main():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser("log2compdb")
     parser.add_argument("-i", "--in", dest="logfile", type=argparse.FileType("r"), default="-",
         help="The build log file to parse.",
     )
@@ -107,6 +107,7 @@ def main():
         help="The compiler used in this build log. An absolute path is best but isn't required. "
         "Can be specified multiple times if your build log uses multiple compilers",
     )
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
 
     args = parser.parse_args()
     logfile = args.logfile
