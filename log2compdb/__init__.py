@@ -26,6 +26,9 @@ class CompileCommand:
     ) -> Optional["CompileCommand"]:
         """ cmd_args should already be split with shlex.split or similar. """
 
+        # If the user-supplied compiler isn't in this supposed argument list,
+        # then this isn't any kind of compiler invocation we can detect.
+        # Skip.
         if cc_cmd.name not in cmd_args[0]:
             return None
 
@@ -38,8 +41,7 @@ class CompileCommand:
             directory = Path(directory)
 
         # Heuristic: look for a `-o <name>` and then look for a file matching that pattern.
-        output_index = cmd_args.index("-o")
-        if output_index:
+        if output_index := cmd_args.index("-o"):
 
             output_path = directory / Path(cmd_args[output_index + 1])
             input_file_index = list_index_with_stem(cmd_args, output_path.stem)
@@ -106,8 +108,7 @@ def main():
         if not line:
             continue
 
-        dirchange_match = DIRCHANGE_PATTERN.search(line)
-        if dirchange_match:
+        if dirchange_match := DIRCHANGE_PATTERN.search(line):
             groups = dirchange_match.groupdict()
             action = groups["action"]
             path = groups["path"]
