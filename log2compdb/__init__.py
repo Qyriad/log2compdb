@@ -1,3 +1,11 @@
+"""
+log2compdb is not intended as a library, but usage as one is documented here for the sake of completeness.
+
+All the leg work is done by :py:meth:`get_entries`, which takes a file containing the build log, and a list of
+compilers to detect invocations for in that build log, and returns a list of :py:class:`CompileCommand`s, which
+can be serialized to JSON with Python's :py:mod:`json` module.
+"""
+
 import argparse
 from collections.abc import Sequence
 import dataclasses
@@ -18,10 +26,21 @@ INFILE_PATTERN = re.compile(r"(?P<path>.+\.(c|cpp|cxx|cc|h|hpp|hxx))", re.IGNORE
 
 @dataclass
 class CompileCommand:
+    """
+    Helper structure that stores the information needed for a single entry in ``compile_commands.json``.
+    Construction is typically done with :py:meth:`CompileCommand.from_cmdline()`.
+
+    :param str file: The file this compilation database entry operates on (likely a .c file or similar).
+    :param str output: The output file this compilation invocation creates (technically optional).
+    :param str directory: The directory the compiler is invoked in, and all relative paths are relative to.
+    :param list[str] arguments: The argument list for this compiler invocation. The first entry should be the
+        compiler itself.
+    """
+
     file: str
     output: str
     directory: str
-    arguments: list
+    arguments: list[str]
 
     @classmethod
     def from_cmdline(cls,
@@ -29,7 +48,20 @@ class CompileCommand:
         cmd_args: list[str],
         directory: (str | Path | None) = None
     ) -> Optional["CompileCommand"]:
-        """ cmd_args should already be split with shlex.split or similar. """
+        """
+        Attempts to parse a compiler invocation from its command-line, given the compiler we're looking for.
+
+        :param pathlib.Path cc_cmd: The path (ideally absolute but not required) to the compiler we're looking for
+            in this invocation.
+        :param list[str] cmd_args: The argument list we're parsing — should already be split with something like
+            :py:func:`shlex.split()`.
+        :param typing.Optional[str | pathlib.Path] directory: The directory the compiler is invoked in, and that all
+            relative paths referenced are relative to. Optional, but provided by the log2compdb CLI.
+
+        :returns: A single :py:class:`CompileCommand` compilation database entry, if one was able to be parsed.
+            Otherwise, returns :py:data:`None`.
+        :rtype: typing.Optional[CompileCommand]
+        """
 
         # If the user-supplied compiler isn't in this supposed argument list,
         # then this isn't any kind of compiler invocation we can detect.
@@ -111,8 +143,12 @@ class Compiler:
 
 def get_entries(logfile: io.TextIOBase, compilers: Sequence[Compiler] | Compiler) -> list[CompileCommand]:
     """
-    logfile: a file-like object for the build log, containing compiler invocations
-    compilers: a list of `Compiler` objects representing the compilers to look for in the build log.
+    :param io.TextIOBase logfile: A file-like object for the build log, containing compiler invocations.
+    :param collections.abc.Sequence[Compiler] compilers: A list of :py:class:`Compiler` objects representing the compilers to look for
+        in the build log.
+
+    :returns: The compile commands that were detected from the build log.
+    :rtype: list[CompileCommand]
     """
 
     if isinstance(compilers, Compiler):
