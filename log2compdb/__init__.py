@@ -11,7 +11,7 @@ import typing
 from typing import Optional, Sequence
 import re
 
-__version__ = "0.2.4"
+__version__ = "0.2.5"
 
 DIRCHANGE_PATTERN = re.compile(r"(?P<action>\w+) directory '(?P<path>.+)'")
 INFILE_PATTERN = re.compile(r"(?P<path>.+\.(c|cpp|cxx|cc|h|hpp|hxx))", re.IGNORECASE)

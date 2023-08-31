@@ -10,7 +10,7 @@
       log2compdb = pkgs.python3Packages.buildPythonApplication {
 
         pname = "log2compdb";
-        version = "0.2.4";
+        version = "0.2.5";
         format = "pyproject";
         src = ./.;
 
