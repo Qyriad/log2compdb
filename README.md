@@ -32,7 +32,7 @@ Non-parallel builds can take a while, so you might want to include the build out
 something like:
 
 ```bash
-$ make V=1 | tee /dev/stdin > build.log
+$ make V=1 | tee /dev/stderr > build.log
 ```
 
 After that, you can run `log2compdb`, telling it the path to the build log, and the compiler used in the build.
@@ -46,7 +46,7 @@ $ log2compdb -i build.log -o compile_commands.json -c /opt/homebrew/bin/arm-none
 Alternatively, you can also tell `log2comp2db` to read from standard in, and skip the extra file:
 
 ```bash
-$ make V=1 | tee /dev/stdin | log2compdb -o compile_commands.json -c /opt/homebrew/bin/arm-none-eabi/gcc
+$ make V=1 | tee /dev/stderr | log2compdb -o compile_commands.json -c /opt/homebrew/bin/arm-none-eabi/gcc
 ```
 
 ## Installation
@@ -56,4 +56,17 @@ packaging tools, such as pip:
 
 ```bash
 $ pip install log2compdb
+```
+
+## Nix
+
+If your compiler is managed with Nix, `log2compdb` will miss any compiler arguments inserted by Nix's compiler
+wrappers. In many cases this will not matter, but you can run the build with the environment variable
+[`NIX_DEBUG=1`](https://nixos.org/manual/nixpkgs/stable/#variables-affecting-stdenv-initialisation) to have Nix's
+compiler wrappers print the compiler arguments they insert, and `log2compdb` can parse this information, however
+it is printed to *stderr*, not stdout, so make sure to redirect stderr to the build log or `log2compdb`'s input:
+
+```bash
+$ env NIX_DEBUG=1 make V=1 2>&1 | tee /dev/stderr > build.log
+$ log2compdb -i build.log -c /nix/store/9nj6qjqp0d25giirzj9f0k35g2s58g0h-gcc-wrapper-11.3.0/bin/gcc
 ```

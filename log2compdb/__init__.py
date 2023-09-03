@@ -1,5 +1,5 @@
 import argparse
-from collections.abc import MutableSequence
+from collections.abc import Sequence
 import dataclasses
 from dataclasses import dataclass
 import io
@@ -8,13 +8,16 @@ import os
 from pathlib import Path
 import shlex
 import typing
-from typing import Optional, Sequence
+from typing import Optional, Literal
 import re
 
 __version__ = "0.2.5"
 
 DIRCHANGE_PATTERN = re.compile(r"(?P<action>\w+) directory '(?P<path>.+)'")
 INFILE_PATTERN = re.compile(r"(?P<path>.+\.(c|cpp|cxx|cc|h|hpp|hxx))", re.IGNORECASE)
+NIX_DEBUG_PATTERN = re.compile(
+    r"^(?P<kind>(extra flags before)|(original flags)|(extra flags after)) to (?P<compiler>.+):$",
+)
 
 @dataclass
 class CompileCommand:
@@ -48,7 +51,13 @@ class CompileCommand:
         input_path = None
 
         # Heuristic: look for a `-o <name>` and then look for a file matching that pattern.
-        if output_index := cmd_args.index("-o"):
+        try:
+            output_index = cmd_args.index("-o")
+        # Apparent list.index() returns ValueError if not found ,and not like. IndexError.
+        except ValueError:
+            output_index = None
+
+        if output_index is not None:
 
             output_path = directory / Path(cmd_args[output_index + 1])
 
@@ -109,6 +118,41 @@ class Compiler:
         return cls(name=name, path=path)
 
 
+@dataclass
+class NixMode:
+    """
+    There's something amusingly ironic about using a very stateful object to keep track of compiler arguments
+    added by the purely functional package manager.
+    """
+
+    compiler: Compiler
+    kind: Literal["before", "original", "after"]
+    args: list[str]
+
+    @classmethod
+    def from_match(cls, match: re.Match, old: Optional["NixMode"]) -> "NixMode":
+        """ Initialize a NixMode object from the result of matching on `NIX_DEBUG_PATTERN`. """
+
+        raw_kind = match.group("kind")
+        kind = None
+        for short_kind in ("before", "original", "after"):
+            if short_kind in raw_kind:
+                kind = short_kind
+                break
+
+        if kind is None:
+            raise ValueError("unreachable: NIX_DEBUG_PATTERN matched with invalid kind")
+
+        compiler = Compiler.from_argspec(match.group("compiler"))
+
+        if old is not None:
+            args = old.args
+        else:
+            args = [str(compiler.path)]
+
+        return cls(compiler=compiler, kind=kind, args=args)
+
+
 def get_entries(logfile: io.TextIOBase, compilers: Sequence[Compiler] | Compiler) -> list[CompileCommand]:
     """
     logfile: a file-like object for the build log, containing compiler invocations
@@ -120,13 +164,48 @@ def get_entries(logfile: io.TextIOBase, compilers: Sequence[Compiler] | Compiler
         compilers = typing.cast(list[Compiler], [compilers])
 
     entries = []
+    file_entries = dict()
     dirstack = [os.getcwd()]
+    # For handling the output of NIX_DEBUG=1
+    nix_mode = None
 
     for line in logfile:
 
         # Skip empty lines.
         if not line:
             continue
+
+        # If we see stuff that looks like the output of a Nix compiler wrapper with
+        # NIX_DEBUG set, then we'll try to process that.
+        if nix_debug_match := NIX_DEBUG_PATTERN.search(line):
+            nix_mode = NixMode.from_match(nix_debug_match, old=nix_mode)
+            # NIX_DEBUG=1 outputs arguments each on one line, so set up to look for those lines,
+            # but for this line there's nothing more we can do.
+            continue
+
+        if nix_mode is not None:
+            # Nix lists one argument per line, after two spaces at the start of the line.
+            if line.startswith("  "):
+                nix_mode.args.append(line.strip())
+            else:
+                # If there weren't any compiler arguments, and the NIX_DEBUG_PATTERN didn't match, then
+                # we must have finished the NIX_DEBUG output.
+                entry = CompileCommand.from_cmdline(nix_mode.compiler.path, nix_mode.args, dirstack[-1])
+                if entry is None:
+                    # As usual, ignore lines we don't understand.
+                    # In this case though, it's definitely a little weird, so at least print something.
+                    print(f"NIX_DEBUG compiler entry {nix_mode.args} not understood. Skipping.")
+                    continue
+
+                # Store our entry, and reset our state.
+                # TODO: we don't check if there's already an entry for this file, here
+                # because a NIX_DEBUG entry probably has more information, but we still need to
+                # determine if there's any use case for a compilation database having the same file
+                # twice with different compile commands.
+                entries.append(entry)
+                file_entries[entry.file] = entry
+                nix_mode = None
+
 
         if dirchange_match := DIRCHANGE_PATTERN.search(line):
             action = dirchange_match.group("action")
@@ -152,7 +231,11 @@ def get_entries(logfile: io.TextIOBase, compilers: Sequence[Compiler] | Compiler
             try:
                 compiler_invocation_start = cmd_args.index(compiler.name)
                 entry = CompileCommand.from_cmdline(compiler.path, cmd_args[compiler_invocation_start:], dirstack[-1])
-                entries.append(entry)
+                # Don't add entries for files that we already have an entry for.
+                # TODO: determine if there's any case where multiple entries for the same file
+                # in a compile_commands.json is useful.
+                if entry is not None and entry.file not in file_entries.keys():
+                    entries.append(entry)
             except ValueError:
                 # As usual, ignore lines we don't understand.
                 pass
