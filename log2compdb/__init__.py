@@ -52,14 +52,14 @@ class CompileCommand:
 
         # Heuristic: look for a `-o <name>` and then look for a file matching that pattern.
         try:
+            # Apparently list.index() returns ValueError if not found, and not like. IndexError.
             output_index = cmd_args.index("-o")
-        # Apparent list.index() returns ValueError if not found ,and not like. IndexError.
-        except ValueError:
-            output_index = None
-
-        if output_index is not None:
-
             output_path = directory / Path(cmd_args[output_index + 1])
+        except (ValueError, IndexError):
+            output_index = None
+            output_path = None
+
+        if output_index is not None and output_path is not None:
 
             # Prefer input files that match the expected pattern, but fall back to whatever has that stem.
             stem_matches = [item for item in cmd_args if Path(item).stem == output_path.stem]
