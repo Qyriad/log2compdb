@@ -54,7 +54,15 @@ class CompileCommand:
         try:
             # Apparently list.index() returns ValueError if not found, and not like. IndexError.
             output_index = cmd_args.index("-o")
-            output_path = directory / Path(cmd_args[output_index + 1])
+            output_arg = cmd_args[output_index + 1]
+
+            # Special case: if the output path is /dev/null, fallback to normal input path detection.
+            # The Arduino build system does this.
+            if output_arg == "/dev/null":
+                output_path = None
+            else:
+                output_path = directory / Path(output_arg)
+
         except (ValueError, IndexError):
             output_index = None
             output_path = None
