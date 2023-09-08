@@ -125,6 +125,18 @@ class Compiler:
 
         return cls(name=name, path=path)
 
+    def find_invocation_start(self, cmd_args: list[str]) -> int:
+        """ Attempts to find an invocation of this compiler in the given argument list. """
+
+        for index, arg in enumerate(cmd_args):
+            if arg in (self.name, self.path):
+                return index
+
+            if Path(arg).stem == self.name:
+                return index
+
+        raise ValueError(f"compiler invocation for {self} not found in {cmd_args}")
+
 
 @dataclass
 class NixMode:
@@ -237,7 +249,7 @@ def get_entries(logfile: io.TextIOBase, compilers: Sequence[Compiler] | Compiler
             # but consider that the start of the arguments for further parsing.
             # A lot of build systems like to use a wrapper command in their compiler invocation.
             try:
-                compiler_invocation_start = cmd_args.index(compiler.name)
+                compiler_invocation_start = compiler.find_invocation_start(cmd_args)
                 entry = CompileCommand.from_cmdline(compiler.path, cmd_args[compiler_invocation_start:], dirstack[-1])
                 # Don't add entries for files that we already have an entry for.
                 # TODO: determine if there's any case where multiple entries for the same file
