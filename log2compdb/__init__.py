@@ -14,7 +14,7 @@ import re
 __version__ = "0.2.5"
 
 DIRCHANGE_PATTERN = re.compile(r"(?P<action>\w+) directory '(?P<path>.+)'")
-INFILE_PATTERN = re.compile(r"(?P<path>.+\.(c|cpp|cxx|cc|h|hpp|hxx))", re.IGNORECASE)
+INFILE_PATTERN = re.compile(r"(?P<path>.+\.(cpp|cxx|cc|c|hpp|hxx|h))", re.IGNORECASE)
 NIX_DEBUG_PATTERN = re.compile(
     r"^(?P<kind>(extra flags before)|(original flags)|(extra flags after)) to (?P<compiler>.+):$",
 )
