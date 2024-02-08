@@ -36,4 +36,7 @@ in buildPythonApplication {
   nativeCheckInputs = [
     pytest
   ];
+
+  setupHook = ./nix/setup-hook.sh;
+
 }
