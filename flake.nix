@@ -25,6 +25,8 @@
         inputsFrom = [ log2compdb ];
       };
 
+      checks = self.packages.${system};
+
     }) # eachDefaultSystems
   ; # outputs
 }
