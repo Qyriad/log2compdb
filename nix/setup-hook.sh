@@ -3,9 +3,12 @@
 
 set -euo pipefail
 
+log2compdbMode="${log2compdbMode:-}"
+
 log2compdbEchoExec() {
-	echoCmd "log2compdb" "$@"
+	echoCmd $'\033[32mlog2compdb\033[0m' "$@"
 	"$@"
+	echoCmd $'\033[32mlog2compdb\033[0m' "done"
 }
 
 # Sensible defaults.
@@ -25,13 +28,44 @@ fi
 log2compdbOrigMake=
 
 log2compdbMake() {
-	#log2compdbEchoExec "$log2compdbOrigMake" "$@" V=1 VERBOSE=1 2>&1 | tee /dev/stderr > log2compdb_build.log
 	echo "log2compdb:" "$log2compdbOrigMake" '"$@" V=1 VERBOSE=1 2>&1 | tee /dev/stderr >> log2compdb_build.log'
 	ls -l --color=always --group-directories-first
 	"$log2compdbOrigMake" "$@" V=1 VERBOSE=1 2>&1 | tee /dev/stderr > log2compdb_build.log
 }
 
 # TODO: add a preConfigure hook to check for things like CMake and Meson.
+
+log2compdbPreConfigure() {
+	echo log2compdbPreConfigure
+
+	local configurePhaseName
+
+	if [[ -z "${log2compdbMode:-}" ]]; then
+
+		# If this is a variable of some kind, then we need to resolve it.
+		if [[ -v configurePhase ]]; then
+			echo "log2compdb: it's a variable"
+			configurePhaseName="$(declare -F "$configurePhase")"
+		else
+			echo "log2compdb: it's not a variable"
+			configurePhaseName="$(declare -F "configurePhase")"
+		fi
+	fi
+
+	if [[ "$configurePhaseName" = "mesonConfigurePhase" ]]; then
+		log2compdbMode=meson
+	elif [[ "$configurePhaseName" = "cmakeConfigurePhase" ]]; then
+		log2compdbMode=cmake
+	fi
+
+	if [[ -z "${log2compdbMode:-}" ]]; then
+		if [[ -n "$configurePhaseName" ]]; then
+			echo "log2compdb: don't know how to handle $configurePhaseName; skipping"
+		else
+			echo "don't know how to handle configurePhase; skipping"
+		fi
+	fi
+}
 
 log2compdbPreBuild() {
 	echo "log2compdbPreBuild"
@@ -80,6 +114,7 @@ log2compdbPostInstall() {
 }
 
 if [[ -z "${dontLog2compdbPreBuild-}" ]] && [[ -z "${configurePhase-}" ]]; then
+	preConfigureHooks+=('log2compdbPreConfigure')
 	preBuildHooks+=('log2compdbPreBuild')
 	postBuildHooks+=('log2compdbPostBuild')
 	preInstallHooks+=('log2compdbPreInstall')
