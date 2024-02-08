@@ -242,7 +242,7 @@ def get_entries(logfile: io.TextIOBase, compilers: Sequence[Compiler] | Compiler
         try:
             cmd_args = shlex.split(line)
         except ValueError:
-            print(sys.stderr, f"log2compdb: error `shlex.split`ing line {line!r}; ignoring")
+            print(f"log2compdb: error `shlex.split`ing line {line!r}; ignoring", file=sys.stderr)
             continue
 
         # Skip lines that don't have a meaningful command.
