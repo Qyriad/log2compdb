@@ -4,34 +4,27 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
   outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-        inherit (builtins) attrValues;
+    flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = import nixpkgs { inherit system; };
 
-        mkDefault = drv: {
-          default = drv;
-          ${drv.pname} = drv;
-        };
+      inherit (pkgs.python3Packages) twine build;
 
-        log2compdb = pkgs.callPackage ./log2compdb.nix { };
+      log2compdb = import ./default.nix { inherit pkgs; };
 
-        devShellPkgs = attrValues {
-          inherit (pkgs.python3Packages)
-            twine
-            build
-          ;
-        };
+    in {
+      packages.default = log2compdb;
 
-      in {
-        packages = mkDefault log2compdb;
+      apps.default = flake-utils.lib.mkApp { drv = log2compdb; };
 
-        devShells.default = pkgs.mkShell {
-          packages = devShellPkgs;
-          inputsFrom = [ log2compdb ];
-        };
+      devShells.default = pkgs.mkShell {
+        packages = [
+          pkgs.pyright
+          twine
+          build
+        ];
+        inputsFrom = [ log2compdb ];
+      };
 
-      }
-    ) # eachDefaultSystems
+    }) # eachDefaultSystems
   ; # outputs
 }

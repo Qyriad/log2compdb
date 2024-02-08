@@ -1,4 +1,4 @@
 {
   pkgs ? import <nixpkgs> { },
 }:
-  pkgs.callPackage ./log2compdb.nix { }
+  pkgs.callPackage ./package.nix { }
