@@ -9,10 +9,17 @@
 
       inherit (pkgs.python3Packages) twine build;
 
-      log2compdb = import ./default.nix { inherit pkgs; };
+        log2compdb = pkgs.callPackage ./package.nix { };
+
+        hello = pkgs.hello.overrideAttrs (prev: {
+          nativeBuildInputs = (prev.nativeBuildInputs or [ ]) ++ [
+            log2compdb
+          ];
+        });
 
     in {
       packages.default = log2compdb;
+      packages.hello = hello;
 
       apps.default = flake-utils.lib.mkApp { drv = log2compdb; };
 
