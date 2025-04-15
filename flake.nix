@@ -3,30 +3,24 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
   };
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import nixpkgs { inherit system; };
+  outputs = {
+    self,
+    nixpkgs,
+    flake-utils,
+  }: flake-utils.lib.eachDefaultSystem (system: let
+    pkgs = import nixpkgs { inherit system; };
+    log2compdb = import ./default.nix { inherit pkgs; };
 
-      inherit (pkgs.python3Packages) twine build;
+  in {
+    packages = {
+      default = log2compdb;
+      inherit log2compdb;
+    };
 
-      log2compdb = import ./default.nix { inherit pkgs; };
+    apps.default = flake-utils.lib.mkApp { drv = log2compdb; };
 
-    in {
-      packages.default = log2compdb;
+    devShells.default = pkgs.python3Packages.callPackage log2compdb.mkDevShell { };
 
-      apps.default = flake-utils.lib.mkApp { drv = log2compdb; };
-
-      devShells.default = pkgs.mkShell {
-        packages = [
-          pkgs.pyright
-          twine
-          build
-        ];
-        inputsFrom = [ log2compdb ];
-      };
-
-      checks = self.packages.${system};
-
-    }) # eachDefaultSystems
-  ; # outputs
+    checks = self.packages.${system};
+  });
 }
