@@ -4,7 +4,6 @@
   stdenvNoCC,
   python,
   setuptools,
-  wheel,
   pytestCheckHook,
   pypaBuildHook,
   pypaInstallHook,
@@ -34,7 +33,6 @@ in stdenv.mkDerivation (self: {
     root = ./.;
     fileset = lib.fileset.unions [
       ./pyproject.toml
-      ./setup.cfg
       ./log2compdb
       ./tests
     ];

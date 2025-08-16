@@ -2,6 +2,36 @@
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "log2compdb"
+dynamic = ["version"]
+description = "Generate compile_commands.json from a build log with compiler invocations"
+authors = [
+	{ name = "Qyriad", email = "qyriad@qyriad.me" },
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = [
+	"build-tool",
+	"build-system",
+	"compilation-database",
+]
+
+[project.urls]
+homepage = "https://codeberg.org/Qyriad/log2compdb"
+repository = "https://codeberg.org/Qyriad/log2compdb"
+
+[project.optional-dependencies]
+dev = [
+	"pytest>=7.0",
+]
+
+[project.scripts]
+log2compdb = "log2compdb:main"
+
+[tool.setuptools.dynamic.version]
+attr = "log2compdb.__version__"
+
 [tool.pytest.ini_options]
 addopts = [
 	"--import-mode=importlib",
