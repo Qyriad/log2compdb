@@ -17,6 +17,8 @@ keywords = [
 	"compilation-database",
 ]
 
+requires-python = ">=3.8"
+
 [project.urls]
 homepage = "https://codeberg.org/Qyriad/log2compdb"
 repository = "https://codeberg.org/Qyriad/log2compdb"
@@ -37,3 +39,12 @@ addopts = [
 	"--import-mode=importlib",
 ]
 pythonpath = "."
+
+[tool.pyright]
+# typing.* aliases are used for compatability with Python 3.10.
+deprecateTypingAliases = false
+reportUnusedCallResult = false
+# Not *everything* needs to be perfectly type checked.
+reportAny = false
+reportUnknownVariableType = false
+reportMissingTypeArgument = false

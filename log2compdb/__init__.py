@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import argparse
 from collections.abc import Sequence
 import dataclasses
@@ -7,8 +9,7 @@ import json
 import os
 from pathlib import Path
 import shlex
-import typing
-from typing import Optional, Literal
+from typing import Optional, Literal, Union
 import re
 import sys
 
@@ -25,13 +26,13 @@ class CompileCommand:
     file: str
     output: str
     directory: str
-    arguments: list
+    arguments: list[str]
 
     @classmethod
     def from_cmdline(cls,
         cc_cmd: Path,
         cmd_args: list[str],
-        directory: (str | Path | None) = None
+        directory: Union[str, Path, None] = None,
     ) -> Optional["CompileCommand"]:
         """ cmd_args should already be split with shlex.split or similar. """
 
@@ -115,7 +116,7 @@ class Compiler:
     path: Path
 
     @classmethod
-    def from_argspec(cls, compiler_arg) -> "Compiler":
+    def from_argspec(cls, compiler_arg: str) -> "Compiler":
         """ `compiler_arg` is a value of --compiler verbatim. """
 
         path = Path(compiler_arg)
@@ -151,7 +152,7 @@ class NixMode:
     args: list[str]
 
     @classmethod
-    def from_match(cls, match: re.Match, old: Optional["NixMode"]) -> "NixMode":
+    def from_match(cls, match: re.Match[str], old: Optional["NixMode"]) -> "NixMode":
         """ Initialize a NixMode object from the result of matching on `NIX_DEBUG_PATTERN`. """
 
         raw_kind = match.group("kind")
@@ -182,10 +183,10 @@ def get_entries(logfile: io.TextIOBase, compilers: Sequence[Compiler] | Compiler
 
     if isinstance(compilers, Compiler):
         # If `compilers` was specified as a single, non-sequence object, squish that into a single-element list.
-        compilers = typing.cast(list[Compiler], [compilers])
+        compilers = [compilers]
 
-    entries = []
-    file_entries = dict()
+    entries: list[CompileCommand] = []
+    file_entries: dict[str, CompileCommand] = dict()
     dirstack = [os.getcwd()]
     # For handling the output of NIX_DEBUG=1
     nix_mode = None
@@ -277,8 +278,8 @@ def main():
         help="The compile_commands.json file to write",
     )
     parser.add_argument("-c", "--compiler", dest="compilers", action="append", required=True,
-        help="The compiler used in this build log. An absolute path is best but isn't required. "
-        "Can be specified multiple times if your build log uses multiple compilers",
+        help="""The compiler used in this build log. An absolute path is best but isn't required.\n
+        Can be specified multiple times if your build log uses multiple compilers""",
     )
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
 
