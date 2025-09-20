@@ -4,12 +4,11 @@ import argparse
 from collections.abc import Sequence
 import dataclasses
 from dataclasses import dataclass
-import io
 import json
 import os
 from pathlib import Path
 import shlex
-from typing import Optional, Literal, Union
+from typing import Optional, Literal, Union, TextIO
 import re
 import sys
 
@@ -20,6 +19,14 @@ INFILE_PATTERN = re.compile(r"(?P<path>.+\.(cpp|cxx|cc|c|hpp|hxx|h))", re.IGNORE
 NIX_DEBUG_PATTERN = re.compile(
     r"^(?P<kind>(extra flags before)|(original flags)|(extra flags after)) to (?P<compiler>.+):$",
 )
+
+def open_arg_file(path: str, mode: str) -> TextIO:
+    if path == "-":
+        return sys.stdin if 'r' in mode else sys.stdout
+
+    # Yeah yeah `mode` *could* include "b" in it.
+    # But I know it doesn't.
+    return open(path, mode) # pyright:ignore[reportReturnType]
 
 @dataclass
 class CompileCommand:
@@ -175,7 +182,7 @@ class NixMode:
         return cls(compiler=compiler, kind=kind, args=args)
 
 
-def get_entries(logfile: io.TextIOBase, compilers: Sequence[Compiler] | Compiler) -> list[CompileCommand]:
+def get_entries(logfile: TextIO, compilers: Sequence[Compiler] | Compiler) -> list[CompileCommand]:
     """
     logfile: a file-like object for the build log, containing compiler invocations
     compilers: a list of `Compiler` objects representing the compilers to look for in the build log.
@@ -271,10 +278,10 @@ def get_entries(logfile: io.TextIOBase, compilers: Sequence[Compiler] | Compiler
 
 def main():
     parser = argparse.ArgumentParser("log2compdb")
-    parser.add_argument("-i", "--in", dest="logfile", type=argparse.FileType("r"), default="-",
+    parser.add_argument("-i", "--in", dest="logfile", type=str, default="-",
         help="The build log file to parse.",
     )
-    parser.add_argument("-o", "--out", dest="outfile", type=argparse.FileType("w"), default="compile_commands.json",
+    parser.add_argument("-o", "--out", dest="outfile", type=str, default="compile_commands.json",
         help="The compile_commands.json file to write",
     )
     parser.add_argument("-c", "--compiler", dest="compilers", action="append", required=True,
@@ -286,7 +293,9 @@ def main():
     args = parser.parse_args()
     compilers = [Compiler.from_argspec(compiler) for compiler in args.compilers]
 
-    entries = get_entries(args.logfile, compilers)
+    logfile = open_arg_file(args.logfile, "r")
+
+    entries = get_entries(logfile, compilers)
 
     if not entries:
         print("Didn't detect any compiler invocations! Refusing to overwrite with empty JSON.")
