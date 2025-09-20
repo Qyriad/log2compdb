@@ -22,9 +22,12 @@
   stdenv = stdenvNoCC;
   # FIXME: should this be python.stdenv?
   inherit (stdenv) hostPlatform buildPlatform;
+
+  pyprojectToml = lib.importTOML ./pyproject.toml;
+  inherit (pyprojectToml) project;
+
 in stdenv.mkDerivation (self: {
-  # If we're using an unsupported Python version then put that in the name.
-  pname = if !(self.meta.broken or false) then "log2compdb" else "log2compdb-${python.pythonAttr}";
+  pname = "${python.pythonAttr}-${project.name}";
   # log2compdb.__version__ is the source pyproject.toml uses, so we'll
   # use it too.
   version = lib.pipe ./log2compdb/__init__.py [
