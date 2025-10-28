@@ -8,7 +8,7 @@ import json
 import os
 from pathlib import Path
 import shlex
-from typing import Optional, Literal, Union, TextIO
+from typing import Generator, Optional, Literal, Union, TextIO
 import re
 import sys
 
@@ -20,13 +20,18 @@ NIX_DEBUG_PATTERN = re.compile(
     r"^(?P<kind>(extra flags before)|(original flags)|(extra flags after)) to (?P<compiler>.+):$",
 )
 
-def open_arg_file(path: str, mode: str) -> TextIO:
-    if path == "-":
-        return sys.stdin if 'r' in mode else sys.stdout
-
-    # Yeah yeah `mode` *could* include "b" in it.
-    # But I know it doesn't.
-    return open(path, mode) # pyright:ignore[reportReturnType]
+from contextlib import contextmanager
+@contextmanager
+def open_arg_file(path: str, mode: str) -> Generator[TextIO]:
+    if path == '-':
+        yield sys.stdin if 'r' in mode else sys.stdout
+        return
+    else:
+        f = open(path, mode)
+        # Yeah yeah `mode` *could* include "b" in it.
+        # But I know it doesn't.
+        yield f # pyright:ignore[reportReturnType]
+        f.close()
 
 @dataclass
 class CompileCommand:
@@ -293,21 +298,18 @@ def main():
     args = parser.parse_args()
     compilers = [Compiler.from_argspec(compiler) for compiler in args.compilers]
 
-    logfile = open_arg_file(args.logfile, "r")
-
-    entries = get_entries(logfile, compilers)
+    entries = []
+    with open_arg_file(args.logfile, "r") as logfile:
+        entries = get_entries(logfile, compilers)
 
     if not entries:
         print("Didn't detect any compiler invocations! Refusing to overwrite with empty JSON.")
 
     json_entries = list(map(dataclasses.asdict, entries))
 
-    if args.outfile == '-':
-        json.dump(json_entries, sys.stdout, indent=4)
-        print()
-    else:
-        with open(args.outfile, 'w') as f:
-            json.dump(json_entries, f, indent=4)
+    with open_arg_file(args.outfile, "w") as f:
+        json.dump(json_entries, f, indent=4)
+        f.write("\n")
 
 if __name__ == "__main__":
     main()
