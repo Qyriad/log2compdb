@@ -302,7 +302,12 @@ def main():
 
     json_entries = list(map(dataclasses.asdict, entries))
 
-    json.dump(json_entries, args.outfile, indent=4)
+    if args.outfile == '-':
+        json.dump(json_entries, sys.stdout, indent=4)
+        print()
+    else:
+        with open(args.outfile, 'w') as f:
+            json.dump(json_entries, f, indent=4)
 
 if __name__ == "__main__":
     main()
